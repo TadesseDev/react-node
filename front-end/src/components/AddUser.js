@@ -1,6 +1,6 @@
 import React, { useState, } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
-export default function Login() {
+export default function AddUser({ updateUser }) {
   const [formData, updateFormData] = useState({
     userName: '',
     firstName: '',
@@ -21,9 +21,16 @@ export default function Login() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
-    }).then(response => {
-      return response.text();
-    }).then(data => console.log(data));
+    }).then(() => {
+      updateUser(oldUsers => [...oldUsers,
+      {
+        id: Math.random(),
+        userN: formData.userName,
+        userFN: formData.firstName,
+        userLN: formData.lastName
+      }]);
+    })
+      .catch(error => console.error(error))
   }
   return (
     <Container>

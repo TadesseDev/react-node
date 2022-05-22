@@ -7,7 +7,7 @@ route.get('/', (request, response) => {
 });
 
 route.post('/add-new-user', (request, response) => {
-  console.log("adding new user");
+  console.log("adding new user", request.body);
   response.send("success in adding user");
 })
 

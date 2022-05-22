@@ -22,8 +22,8 @@ export default function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     }).then(response => {
-      console.log('response is', response);
-    })
+      return response.text();
+    }).then(data => console.log(data));
   }
   return (
     <Container>

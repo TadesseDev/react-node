@@ -27,8 +27,13 @@ route.post('/add-new-user', (request, response) => {
     });
 })
 
-route.get('/users', (request, response) => {
+route.get('/get-users', (request, response) => {
   console.log('getting all users');
-  response.send('response is done')
+  connection.query("select * from express_users", (error, result) => {
+    if (error)
+      response.send('sorry fail to fetch data');
+    else
+      response.send(result);
+  })
 })
 module.exports = route;

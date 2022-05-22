@@ -2,7 +2,7 @@ const express = require('express');
 const route = express.Router();
 const mySql = require('mysql');
 
-const db = mySql.createConnection({
+const connection = mySql.createConnection({
   host: 'localhost',
   user: 'express',
   database: 'express',
@@ -16,15 +16,14 @@ route.get('/', (request, response) => {
 
 route.post('/add-new-user', (request, response) => {
   console.log("adding new user", request.body);
-  db.connect();
-  db.query(`insert into express_users values(default,'tadesse-x','t-x','a-x');`,
+  let connectionResult = '';
+  connection.query(`insert into express_users values(default,'tadesse-x','t-x','a-x');`,
     (error, result) => {
       if (error)
-        console.error("errore is", error)
+        response.send('fail in saving to the database');
       else
-        console.log("sucess");
+        response.send('success in saving to the database');
     });
-  response.send("end add new user request");
 })
 
 route.get('/users', (request, response) => {

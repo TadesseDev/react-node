@@ -16,8 +16,9 @@ route.get('/', (request, response) => {
 
 route.post('/add-new-user', (request, response) => {
   console.log("adding new user", request.body);
-  let connectionResult = '';
-  connection.query(`insert into express_users values(default,'tadesse-x','t-x','a-x');`,
+  const { userName, firstName, lastName } = request.body;
+  connection.query(`insert into express_users values(default,?,?,?);`,
+    [userName, firstName, lastName],
     (error, result) => {
       if (error)
         response.send('fail in saving to the database');

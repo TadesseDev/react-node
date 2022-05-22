@@ -6,6 +6,6 @@ app.get('/', (request, response) => {
   response.send('request is made for the express root');
 });
 
-const user = require('./routes/users');
+const users = require('./routes/users');
 
-app.use('/user', user);
+app.use('/users', users);

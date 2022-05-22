@@ -20,7 +20,7 @@ export default function Login() {
       <Row>
         <Col sm={6} md={4}>
           <form
-            action="http://localhost:3001/user/add-new-user"
+            action="http://localhost:3001/users/add-new-user"
             method="post">
             <div> <label htmlFor="userName">you name here</label>
               <input type="text" name="userName" id="userName"

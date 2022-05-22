@@ -1,10 +1,11 @@
 import React from 'react'
-import Login from '../components/Login'
+import AddUser from '../components/AddUser'
+import UserList from '../components/UserList'
 export default function Home() {
   return (
     <div>
-      Home
-      <Login />
+      <AddUser />
+      <UserList />
     </div>
   )
 }

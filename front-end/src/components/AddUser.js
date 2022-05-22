@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 export default function Login() {
   const [formData, updateFormData] = useState({
@@ -14,14 +14,25 @@ export default function Login() {
       return ({ ...oldState });
     });
   }
-
+  const addUser = (event) => {
+    event.preventDefault();
+    console.log(JSON.stringify(formData));
+    fetch('http://localhost:3001/users/add-new-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    }).then(response => {
+      console.log('response is', response);
+    })
+  }
   return (
     <Container>
       <Row>
         <Col sm={6} md={4}>
           <form
             action="http://localhost:3001/users/add-new-user"
-            method="post">
+            method="post"
+            onSubmit={addUser}>
             <div> <label htmlFor="userName">you name here</label>
               <input type="text" name="userName" id="userName"
                 value={formData.userName}

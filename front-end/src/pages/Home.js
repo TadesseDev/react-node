@@ -4,9 +4,10 @@ import UserList from '../components/UserList'
 export default function Home() {
   const [userList, updateUser] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3001/users/get-users')
+    fetch('https://simple-user-manager.herokuapp.com/users/get-users')
       .then(response => response.json())
       .then(data => updateUser(data))
+      .catch(error => console.error(error))
   }, []);
   return (
     <div>
